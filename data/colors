@@ -1,0 +1,243 @@
+//** Game Colors **//
+
+<color>
+	name:particle_steam1
+	rgb:230,230,230
+</color>
+
+<color>
+	name:particle_steam2
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_smoke1
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_smoke2
+	rgb:26,26,26
+</color>
+
+<color>
+	name:particle_cloud1
+	rgb:230,230,230
+</color>
+
+<color>
+	name:particle_cloud2
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_rain_cloud1
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_rain_cloud2
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_snow_cloud1
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_snow_cloud2
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_sleet_cloud1
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_sleet_cloud2
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_sand_cloud1
+	rgb:204,204,10
+</color>
+
+<color>
+	name:particle_sand_cloud2
+	rgb:148,179,54
+</color>
+
+<color>
+	name:particle_snow1
+	rgb:230,230,230
+</color>
+
+<color>
+	name:particle_snow2
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_ice1
+	rgb:12,242,242
+</color>
+
+<color>
+	name:particle_ice2
+	rgb:10,204,204
+</color>
+
+<color>
+	name:particle_fire1
+	rgb:242,12,12
+</color>
+
+<color>
+	name:particle_fire2
+	rgb:204,10,10
+</color>
+
+<color>
+	name:particle_oil_fire1
+	rgb:242,12,12
+</color>
+
+<color>
+	name:particle_oil_fire2
+	rgb:204,10,10
+</color>
+
+<color>
+	name:particle_water1
+	rgb:12,127,242
+</color>
+
+<color>
+	name:particle_water2
+	rgb:10,107,204
+</color>
+
+<color>
+	name:particle_oil1
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_oil2
+	rgb:26,26,26
+</color>
+
+<color>
+	name:particle_sand1
+	rgb:204,204,10
+</color>
+
+<color>
+	name:particle_sand2
+	rgb:148,179,54
+</color>
+
+<color>
+	name:particle_stone1
+	rgb:191,191,191
+</color>
+
+<color>
+	name:particle_stone2
+	rgb:64,64,64
+</color>
+
+<color>
+	name:particle_grass1
+	rgb:65,217,65
+</color>
+
+<color>
+	name:particle_grass2
+	rgb:54,179,54
+</color>
+
+<color>
+	name:particle_wood1
+	rgb:166,87,8
+</color>
+
+<color>
+	name:particle_wood2
+	rgb:128,67,6
+</color>
+
+<color>
+	name:background
+	rgb:108,10,204
+</color>
+
+//** Engine Colors **//
+
+<color>
+	name:ui_white
+	rgb:230,230,230
+</color>
+
+<color>
+	name:ui_black
+	rgb:26,26,26
+</color>
+
+<color>
+	name:ui_gray
+	rgb:191,191,191
+</color>
+
+<color>
+	name:ui_0
+	rgb:230,230,230
+</color>
+
+<color>
+	name:ui_1
+	rgb:204,107,10
+</color>
+
+<color>
+	name:ui_2
+	rgb:166,87,8
+</color>
+
+<color>
+	name:ui_3
+	rgb:128,67,6
+</color>
+
+<color>
+	name:text_input_blue
+	rgb:10,10,204
+</color>
+
+<color>
+	name:text_input_yellow
+	rgb:204,204,10
+</color>
+
+<color>
+	name:text_input_red
+	rgb:204,10,10
+</color>
+
+<color>
+	name:text_input_green
+	rgb:54,179,54
+</color>
+
+<color>
+	name:white
+	rgb:255,255,255
+</color>
+
+<color>
+	name:red
+	rgb:255,0,0
+</color>

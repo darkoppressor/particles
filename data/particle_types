@@ -1,0 +1,314 @@
+<particle_type>
+	name:air
+	is_rendered:false
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:0
+	flammable:false
+	solid:false
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	mass:0
+	allowed_moves:0
+</particle_type>
+
+<particle_type>
+	name:steam
+	is_rendered:true
+	vertical_movement:up
+	vertical_chance:100
+	horizontal_chance:75
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:air
+	decay_chance:10
+	mass:1
+	move_tries:both
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:smoke
+	is_rendered:true
+	vertical_movement:up
+	vertical_chance:100
+	horizontal_chance:50
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:air
+	decay_chance:10
+	mass:1
+	move_tries:both
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:cloud
+	is_rendered:true
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:10
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:air
+	decay_chance:1
+	mass:1
+	move_tries:horizontal
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:rain_cloud
+	is_rendered:true
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:10
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:water
+	decay_chance:2
+	mass:1
+	move_tries:horizontal
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:snow_cloud
+	is_rendered:true
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:10
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:snow
+	decay_chance:2
+	mass:1
+	move_tries:horizontal
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:sleet_cloud
+	is_rendered:true
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:10
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:ice
+	decay_chance:2
+	mass:1
+	move_tries:horizontal
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:sand_cloud
+	is_rendered:true
+	vertical_movement:none
+	vertical_chance:0
+	horizontal_chance:10
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:sand
+	decay_chance:2
+	mass:1
+	move_tries:horizontal
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
+	name:snow
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:20
+	horizontal_chance:50
+	flammable:false
+	solid:true
+	windblown:true
+	decay_type:none
+	decay_chance:0
+	mass:2
+	move_tries:both,vertical
+	allowed_moves:1
+	annihilation:fire,water
+	annihilation:oil_fire,water
+</particle_type>
+
+<particle_type>
+	name:fire
+	is_rendered:true
+	vertical_movement:random
+	vertical_chance:1
+	horizontal_chance:1
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:smoke
+	decay_chance:8
+	mass:2
+	move_tries:both,both,both
+	allowed_moves:3
+	annihilation:snow,water
+	annihilation:ice,water
+	annihilation:water,steam
+	annihilation:oil,oil_fire
+	annihilation:grass,fire
+	annihilation:wood,fire
+</particle_type>
+
+<particle_type>
+	name:oil_fire
+	is_rendered:true
+	vertical_movement:random
+	vertical_chance:1
+	horizontal_chance:1
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:smoke
+	decay_chance:1
+	mass:2
+	move_tries:both,both,both
+	allowed_moves:3
+	annihilation:snow,water
+	annihilation:ice,water
+	annihilation:water,steam
+	annihilation:oil,oil_fire
+	annihilation:grass,fire
+	annihilation:wood,fire
+</particle_type>
+
+<particle_type>
+	name:oil
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:100
+	flammable:true
+	solid:false
+	windblown:true
+	decay_type:none
+	decay_chance:0
+	mass:3
+	move_tries:vertical,horizontal,horizontal,horizontal
+	allowed_moves:4
+	annihilation:fire,oil_fire
+	annihilation:oil_fire,oil_fire
+</particle_type>
+
+<particle_type>
+	name:water
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:100
+	flammable:false
+	solid:false
+	windblown:true
+	decay_type:none
+	decay_chance:0
+	mass:4
+	move_tries:vertical,horizontal,horizontal,horizontal
+	allowed_moves:4
+	annihilation:fire,steam
+	annihilation:oil_fire,steam
+</particle_type>
+
+<particle_type>
+	name:sand
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:100
+	flammable:false
+	solid:true
+	windblown:true
+	decay_type:none
+	decay_chance:0
+	mass:5
+	move_tries:both,vertical
+	allowed_moves:1
+	annihilation:fire,sand
+	annihilation:oil_fire,sand
+</particle_type>
+
+<particle_type>
+	name:stone
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:0
+	flammable:false
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+	annihilation:fire,stone
+	annihilation:oil_fire,stone
+</particle_type>
+
+<particle_type>
+	name:grass
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:0
+	flammable:true
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+	annihilation:fire,fire
+	annihilation:oil_fire,fire
+</particle_type>
+
+<particle_type>
+	name:wood
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:0
+	flammable:true
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+	annihilation:fire,fire
+	annihilation:oil_fire,fire
+</particle_type>
+
+<particle_type>
+	name:ice
+	is_rendered:true
+	vertical_movement:down
+	vertical_chance:100
+	horizontal_chance:0
+	flammable:false
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+	annihilation:fire,water
+	annihilation:oil_fire,water
+</particle_type>

@@ -1,0 +1,12 @@
+Weather:
+Only 0 or 1 weather event allowed at a time
+Randomly occurs
+Occurrence rate and type random and affected by season
+
+Temperature:
+Randomly changes each day, chance affected by season and weather
+Melts ice and snow into water
+Evaporates water into steam
+Freezes water into ice
+
+Particles can leave the screen to all sides but the bottom
