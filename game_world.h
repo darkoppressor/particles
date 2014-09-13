@@ -19,7 +19,7 @@ public:
 
     uint32_t day_counter;
     uint32_t day;
-    uint32_t season;
+    std::string season;
 
     std::string weather;
     uint32_t weather_intensity;
@@ -27,12 +27,18 @@ public:
     bool wind_direction;
     uint32_t wind_strength;
 
+    int temperature;
+
     std::vector< std::vector <Particle> > particles;
 
     void clear_world();
     void generate_world();
 
     void spawn_particles(std::string type,Collision_Rect box);
+
+    void change_weather(std::string new_weather="");
+    void change_wind();
+    void change_temperature();
 
     void tick();
     void ai();

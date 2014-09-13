@@ -14,14 +14,22 @@ public:
     bool is_rendered;
 
     std::string vertical_movement;
+    std::string grow_movement;
     uint32_t vertical_chance;
     uint32_t horizontal_chance;
+    uint32_t burn_chance;
+    uint32_t grow_chance;
     bool flammable;
+    bool burnable;
     bool solid;
     bool windblown;
 
     std::string decay_type;
     uint32_t decay_chance;
+
+    std::string melts_into;
+    std::string freezes_into;
+    std::string evaporates_into;
 
     uint32_t mass;
 

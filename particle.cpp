@@ -24,6 +24,10 @@ string Particle::get_vertical_movement(){
     return get_type()->vertical_movement;
 }
 
+string Particle::get_grow_movement(){
+    return get_type()->grow_movement;
+}
+
 uint32_t Particle::vertical_chance(){
     return get_type()->vertical_chance;
 }
@@ -32,8 +36,20 @@ uint32_t Particle::horizontal_chance(){
     return get_type()->horizontal_chance;
 }
 
+uint32_t Particle::burn_chance(){
+    return get_type()->burn_chance;
+}
+
+uint32_t Particle::grow_chance(){
+    return get_type()->grow_chance;
+}
+
 bool Particle::is_flammable(){
     return get_type()->flammable;
+}
+
+bool Particle::is_burnable(){
+    return get_type()->burnable;
 }
 
 bool Particle::is_solid(){
@@ -50,6 +66,18 @@ string Particle::get_decay_type(){
 
 uint32_t Particle::get_decay_chance(){
     return get_type()->decay_chance;
+}
+
+string Particle::melts_into(){
+    return get_type()->melts_into;
+}
+
+string Particle::freezes_into(){
+    return get_type()->freezes_into;
+}
+
+string Particle::evaporates_into(){
+    return get_type()->evaporates_into;
 }
 
 uint32_t Particle::get_mass(){
@@ -103,7 +131,7 @@ void Particle::flag_moved(){
     moved=true;
 }
 
-void Particle::move_vertical(uint32_t& move_to_x,uint32_t& move_to_y){
+bool Particle::move_vertical(uint32_t& move_to_x,uint32_t& move_to_y){
     if(get_vertical_movement()!="none"){
         uint32_t vertical_chance_bounded=vertical_chance();
         if(vertical_chance_bounded>100){
@@ -114,6 +142,11 @@ void Particle::move_vertical(uint32_t& move_to_x,uint32_t& move_to_y){
             if(get_vertical_movement()=="up"){
                 if(move_to_y>0){
                     move_to_y--;
+                }
+                else if(!is_solid()){
+                    flag_moved();
+                    set_type("air");
+                    return false;
                 }
             }
             else if(get_vertical_movement()=="down"){
@@ -126,6 +159,11 @@ void Particle::move_vertical(uint32_t& move_to_x,uint32_t& move_to_y){
                     if(move_to_y>0){
                         move_to_y--;
                     }
+                    else if(!is_solid()){
+                        flag_moved();
+                        set_type("air");
+                        return false;
+                    }
                 }
                 else{
                     if(move_to_y<game.world.height-1){
@@ -135,9 +173,11 @@ void Particle::move_vertical(uint32_t& move_to_x,uint32_t& move_to_y){
             }
         }
     }
+
+    return true;
 }
 
-void Particle::move_horizontal(uint32_t& move_to_x,uint32_t& move_to_y){
+bool Particle::move_horizontal(uint32_t& move_to_x,uint32_t& move_to_y){
     uint32_t horizontal_chance_bounded=horizontal_chance();
     if(horizontal_chance_bounded>0 && is_windblown()){
         horizontal_chance_bounded+=(uint32_t)floor((double)game.world.wind_strength*(1.0/((double)get_mass()*8.0)));
@@ -168,14 +208,26 @@ void Particle::move_horizontal(uint32_t& move_to_x,uint32_t& move_to_y){
                 if(move_to_x>0){
                     move_to_x--;
                 }
+                else if(!is_solid()){
+                    flag_moved();
+                    set_type("air");
+                    return false;
+                }
             }
             else{
                 if(move_to_x<game.world.width-1){
                     move_to_x++;
                 }
+                else if(!is_solid()){
+                    flag_moved();
+                    set_type("air");
+                    return false;
+                }
             }
         }
     }
+
+    return true;
 }
 
 void Particle::move_to_position(uint32_t& x,uint32_t& y,uint32_t move_to_x,uint32_t move_to_y){
@@ -212,6 +264,12 @@ void Particle::move_to_position(uint32_t& x,uint32_t& y,uint32_t move_to_x,uint3
             if((type=="fire" && particle->is_flammable()) || (is_flammable() && particle->type=="fire")){
                 remainder="fire";
             }
+            else if((type=="oil_fire" && particle->is_flammable()) || (is_flammable() && particle->type=="oil_fire")){
+                remainder="fire";
+                if(type=="oil" || particle->type=="oil"){
+                    remainder="oil_fire";
+                }
+            }
 
             particle->set_type(annihilate_particle);
             set_type(remainder);
@@ -221,7 +279,7 @@ void Particle::move_to_position(uint32_t& x,uint32_t& y,uint32_t move_to_x,uint3
 
 bool Particle::decay_check(){
     if(get_decay_type()!="none"){
-        if(game.rng.random_range(0,999)<get_decay_chance()){
+        if(game.rng.random_range(0,9999)<get_decay_chance()){
             set_type(get_decay_type());
 
             return true;
@@ -231,8 +289,126 @@ bool Particle::decay_check(){
     return false;
 }
 
+bool Particle::temperature_check(){
+    if(melts_into()!="none" && game.world.temperature>FREEZING_POINT){
+        if(game.rng.random_range(0,99999)<(uint32_t)ceil((double)game.world.temperature/1.45)){
+            set_type(melts_into());
+
+            return true;
+        }
+    }
+
+    if(evaporates_into()!="none" && game.world.temperature>FREEZING_POINT){
+        if(game.rng.random_range(0,99999)<(uint32_t)ceil((double)game.world.temperature/1.45)){
+            set_type(evaporates_into());
+
+            return true;
+        }
+    }
+
+    if(freezes_into()!="none" && game.world.temperature<=FREEZING_POINT){
+        if(game.rng.random_range(0,99999)<(uint32_t)ceil(abs((double)game.world.temperature)*3.5)){
+            set_type(freezes_into());
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void Particle::burn_check(uint32_t x,uint32_t y){
+    if(burn_chance()>0){
+        if(game.rng.random_range(0,99)<burn_chance()){
+            uint32_t burn_x=x;
+            uint32_t burn_y=y;
+
+            if(game.rng.random_range(0,99)<50){
+                if(game.rng.random_range(0,99)<50){
+                    if(burn_x>0){
+                        burn_x--;
+                    }
+                }
+                else{
+                    if(burn_x<game.world.width-1){
+                        burn_x++;
+                    }
+                }
+            }
+
+            if(game.rng.random_range(0,99)<50){
+                if(game.rng.random_range(0,99)<50){
+                    if(burn_y>0){
+                        burn_y--;
+                    }
+                }
+                else{
+                    if(burn_y<game.world.height-1){
+                        burn_y++;
+                    }
+                }
+            }
+
+            Particle* particle=&game.world.particles[burn_x][burn_y];
+
+            if(particle->is_burnable()){
+                string annihilate_particle=particle->annihilate("fire");
+
+                if(annihilate_particle!="none"){
+                    particle->set_type(annihilate_particle);
+                }
+            }
+        }
+    }
+}
+
+void Particle::grow_check(uint32_t x,uint32_t y){
+    if(grow_chance()>0){
+        if(game.rng.random_range(0,99)<grow_chance()){
+            uint32_t grow_x=x;
+            uint32_t grow_y=y;
+
+            if(get_grow_movement()=="both" || get_grow_movement()=="horizontal"){
+                if(game.rng.random_range(0,99)<50){
+                    if(game.rng.random_range(0,99)<50){
+                        if(grow_x>0){
+                            grow_x--;
+                        }
+                    }
+                    else{
+                        if(grow_x<game.world.width-1){
+                            grow_x++;
+                        }
+                    }
+                }
+            }
+
+            if(get_grow_movement()=="both" || get_grow_movement()=="vertical"){
+                if(game.rng.random_range(0,99)<50){
+                    if(game.rng.random_range(0,99)<50){
+                        if(grow_y>0){
+                            grow_y--;
+                        }
+                    }
+                    else{
+                        if(grow_y<game.world.height-1){
+                            grow_y++;
+                        }
+                    }
+                }
+            }
+
+            Particle* particle=&game.world.particles[grow_x][grow_y];
+
+            if(particle->type=="air"){
+                particle->set_type(type);
+            }
+        }
+    }
+}
+
 void Particle::movement(uint32_t x,uint32_t y){
-    if(get_mass()>0 && !decay_check()){
+    if(get_mass()>0 && !decay_check() && !temperature_check()){
         vector<string> move_tries=get_move_tries();
 
         for(uint32_t i=0,moves=0;i<move_tries.size() && !moved;i++){
@@ -240,11 +416,15 @@ void Particle::movement(uint32_t x,uint32_t y){
             uint32_t move_to_y=y;
 
             if(move_tries[i]=="both" || move_tries[i]=="vertical"){
-                move_vertical(move_to_x,move_to_y);
+                if(!move_vertical(move_to_x,move_to_y)){
+                    break;
+                }
             }
 
             if(move_tries[i]=="both" || move_tries[i]=="horizontal"){
-                move_horizontal(move_to_x,move_to_y);
+                if(!move_horizontal(move_to_x,move_to_y)){
+                    break;
+                }
             }
 
             move_to_position(x,y,move_to_x,move_to_y);
@@ -254,6 +434,12 @@ void Particle::movement(uint32_t x,uint32_t y){
                     reset_moved();
                 }
             }
+        }
+
+        if(!moved){
+            burn_check(x,y);
+
+            grow_check(x,y);
         }
     }
 }

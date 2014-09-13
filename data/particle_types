@@ -2,13 +2,20 @@
 	name:air
 	is_rendered:false
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:0
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:false
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:0
 	allowed_moves:0
 </particle_type>
@@ -17,13 +24,20 @@
 	name:steam
 	is_rendered:true
 	vertical_movement:up
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:75
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:air
-	decay_chance:10
+	decay_chance:100
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:both
 	allowed_moves:1
@@ -33,13 +47,20 @@
 	name:smoke
 	is_rendered:true
 	vertical_movement:up
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:50
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:air
-	decay_chance:10
+	decay_chance:100
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:both
 	allowed_moves:1
@@ -49,13 +70,20 @@
 	name:cloud
 	is_rendered:true
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:10
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:air
-	decay_chance:1
+	decay_chance:10
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:horizontal
 	allowed_moves:1
@@ -65,13 +93,20 @@
 	name:rain_cloud
 	is_rendered:true
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:10
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:water
-	decay_chance:2
+	decay_chance:25
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:horizontal
 	allowed_moves:1
@@ -81,13 +116,20 @@
 	name:snow_cloud
 	is_rendered:true
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:10
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:snow
-	decay_chance:2
+	decay_chance:25
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:horizontal
 	allowed_moves:1
@@ -97,13 +139,20 @@
 	name:sleet_cloud
 	is_rendered:true
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:10
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:ice
-	decay_chance:2
+	decay_chance:25
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:horizontal
 	allowed_moves:1
@@ -113,13 +162,20 @@
 	name:sand_cloud
 	is_rendered:true
 	vertical_movement:none
+	grow_movement:none
 	vertical_chance:0
 	horizontal_chance:10
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:sand
-	decay_chance:2
+	decay_chance:25
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:1
 	move_tries:horizontal
 	allowed_moves:1
@@ -129,13 +185,20 @@
 	name:snow
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:20
 	horizontal_chance:50
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:true
 	solid:true
 	windblown:true
 	decay_type:none
 	decay_chance:0
+	melts_into:water
+	freezes_into:none
+	evaporates_into:none
 	mass:2
 	move_tries:both,vertical
 	allowed_moves:1
@@ -147,13 +210,20 @@
 	name:fire
 	is_rendered:true
 	vertical_movement:random
+	grow_movement:none
 	vertical_chance:1
 	horizontal_chance:1
+	burn_chance:25
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:smoke
-	decay_chance:8
+	decay_chance:80
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:2
 	move_tries:both,both,both
 	allowed_moves:3
@@ -162,20 +232,29 @@
 	annihilation:water,steam
 	annihilation:oil,oil_fire
 	annihilation:grass,fire
+	annihilation:vine,fire
 	annihilation:wood,fire
+	annihilation:bomb,fire
 </particle_type>
 
 <particle_type>
 	name:oil_fire
 	is_rendered:true
 	vertical_movement:random
+	grow_movement:none
 	vertical_chance:1
 	horizontal_chance:1
+	burn_chance:25
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:false
 	windblown:true
 	decay_type:smoke
-	decay_chance:1
+	decay_chance:10
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:2
 	move_tries:both,both,both
 	allowed_moves:3
@@ -184,20 +263,29 @@
 	annihilation:water,steam
 	annihilation:oil,oil_fire
 	annihilation:grass,fire
+	annihilation:vine,fire
 	annihilation:wood,fire
+	annihilation:bomb,fire
 </particle_type>
 
 <particle_type>
 	name:oil
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:100
+	burn_chance:0
+	grow_chance:0
 	flammable:true
+	burnable:true
 	solid:false
 	windblown:true
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:3
 	move_tries:vertical,horizontal,horizontal,horizontal
 	allowed_moves:4
@@ -209,31 +297,70 @@
 	name:water
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:100
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:true
 	solid:false
 	windblown:true
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:ice
+	evaporates_into:steam
 	mass:4
 	move_tries:vertical,horizontal,horizontal,horizontal
 	allowed_moves:4
 	annihilation:fire,steam
 	annihilation:oil_fire,steam
+	annihilation:lava,stone
+</particle_type>
+
+<particle_type>
+	name:lava
+	is_rendered:true
+	vertical_movement:down
+	grow_movement:none
+	vertical_chance:100
+	horizontal_chance:100
+	burn_chance:25
+	grow_chance:0
+	flammable:false
+	burnable:false
+	solid:false
+	windblown:true
+	decay_type:stone
+	decay_chance:1
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
+	mass:5
+	move_tries:vertical,horizontal,horizontal,horizontal
+	allowed_moves:4
+	annihilation:water,stone
 </particle_type>
 
 <particle_type>
 	name:sand
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:100
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:true
 	windblown:true
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:5
 	move_tries:both,vertical
 	allowed_moves:1
@@ -245,13 +372,20 @@
 	name:stone
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:0
+	burn_chance:0
+	grow_chance:0
 	flammable:false
+	burnable:false
 	solid:true
 	windblown:false
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:5
 	move_tries:vertical
 	allowed_moves:1
@@ -260,16 +394,71 @@
 </particle_type>
 
 <particle_type>
+	name:meteorite
+	is_rendered:true
+	vertical_movement:down
+	grow_movement:none
+	vertical_chance:100
+	horizontal_chance:0
+	burn_chance:25
+	grow_chance:0
+	flammable:false
+	burnable:false
+	solid:true
+	windblown:false
+	decay_type:stone
+	decay_chance:5
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+</particle_type>
+
+<particle_type>
 	name:grass
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:0
+	burn_chance:0
+	grow_chance:0
 	flammable:true
+	burnable:true
 	solid:true
 	windblown:false
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
+	mass:5
+	move_tries:vertical
+	allowed_moves:1
+	annihilation:fire,fire
+	annihilation:oil_fire,fire
+</particle_type>
+
+<particle_type>
+	name:vine
+	is_rendered:true
+	vertical_movement:down
+	grow_movement:vertical
+	vertical_chance:100
+	horizontal_chance:0
+	burn_chance:0
+	grow_chance:1
+	flammable:true
+	burnable:true
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:5
 	move_tries:vertical
 	allowed_moves:1
@@ -281,13 +470,20 @@
 	name:wood
 	is_rendered:true
 	vertical_movement:down
+	grow_movement:none
 	vertical_chance:100
 	horizontal_chance:0
+	burn_chance:0
+	grow_chance:0
 	flammable:true
+	burnable:true
 	solid:true
 	windblown:false
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
 	mass:5
 	move_tries:vertical
 	allowed_moves:1
@@ -296,16 +492,47 @@
 </particle_type>
 
 <particle_type>
-	name:ice
+	name:fuse
 	is_rendered:true
-	vertical_movement:down
-	vertical_chance:100
+	vertical_movement:none
+	grow_movement:none
+	vertical_chance:0
 	horizontal_chance:0
-	flammable:false
+	burn_chance:0
+	grow_chance:0
+	flammable:true
+	burnable:true
 	solid:true
 	windblown:false
 	decay_type:none
 	decay_chance:0
+	melts_into:none
+	freezes_into:none
+	evaporates_into:none
+	mass:5
+	allowed_moves:0
+	annihilation:fire,fire
+	annihilation:oil_fire,fire
+</particle_type>
+
+<particle_type>
+	name:ice
+	is_rendered:true
+	vertical_movement:down
+	grow_movement:none
+	vertical_chance:100
+	horizontal_chance:0
+	burn_chance:0
+	grow_chance:0
+	flammable:false
+	burnable:true
+	solid:true
+	windblown:false
+	decay_type:none
+	decay_chance:0
+	melts_into:water
+	freezes_into:none
+	evaporates_into:none
 	mass:5
 	move_tries:vertical
 	allowed_moves:1

@@ -1,0 +1,35 @@
+<weather>
+	name:rain
+	wind_strength:10-20
+	temperature:4-6
+</weather>
+
+<weather>
+	name:snow
+	wind_strength:10-20
+	temperature:6-8
+</weather>
+
+<weather>
+	name:sleet
+	wind_strength:10-20
+	temperature:6-8
+</weather>
+
+<weather>
+	name:cloud
+	wind_strength:10-20
+	temperature:1-2
+</weather>
+
+<weather>
+	name:sand
+	wind_strength:15-25
+	temperature:0-0
+</weather>
+
+<weather>
+	name:none
+	wind_strength:0-0
+	temperature:0-0
+</weather>

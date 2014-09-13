@@ -7,6 +7,11 @@ double ZOOM_RATE=0.0;
 double ZOOM_MIN=0.0;
 double ZOOM_MAX=0.0;
 
+double DAY_LENGTH=0.0;
+uint32_t SEASON_LENGTH=0;
+
+int FREEZING_POINT=0;
+
 void set_game_constant(string name,string value){
     if(name=="zoom_rate"){
         ZOOM_RATE=string_stuff.string_to_double(value);
@@ -16,5 +21,14 @@ void set_game_constant(string name,string value){
     }
     else if(name=="zoom_max"){
         ZOOM_MAX=string_stuff.string_to_double(value);
+    }
+    else if(name=="day_length"){
+        DAY_LENGTH=string_stuff.string_to_double(value);
+    }
+    else if(name=="season_length"){
+        SEASON_LENGTH=string_stuff.string_to_unsigned_long(value);
+    }
+    else if(name=="freezing_point"){
+        FREEZING_POINT=string_stuff.string_to_long(value);
     }
 }

@@ -350,6 +350,8 @@
 		<Unit filename="rtt_manager.h" />
 		<Unit filename="screen_shake.cpp" />
 		<Unit filename="screen_shake.h" />
+		<Unit filename="season.cpp" />
+		<Unit filename="season.h" />
 		<Unit filename="server.cpp" />
 		<Unit filename="server.h" />
 		<Unit filename="sorting.cpp" />
@@ -377,6 +379,8 @@
 		<Unit filename="vector.cpp" />
 		<Unit filename="vector.h" />
 		<Unit filename="version.h" />
+		<Unit filename="weather.cpp" />
+		<Unit filename="weather.h" />
 		<Unit filename="window.cpp" />
 		<Unit filename="window.h" />
 		<Unit filename="window_close_function.cpp" />

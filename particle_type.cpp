@@ -8,14 +8,22 @@ Particle_Type::Particle_Type(){
     is_rendered=false;
 
     vertical_movement="";
+    grow_movement="";
     vertical_chance=0;
     horizontal_chance=0;
+    burn_chance=0;
+    grow_chance=0;
     flammable=false;
+    burnable=false;
     solid=false;
     windblown=false;
 
     decay_type="";
     decay_chance=0;
+
+    melts_into="";
+    freezes_into="";
+    evaporates_into="";
 
     mass=0;
 

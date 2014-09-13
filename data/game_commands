@@ -9,21 +9,71 @@
 </game_command>
 
 <game_command>
-	name:chat
-	title:Chat
-	description:Pull up the chat box
+	name:rain
+	title:Rain
+	description:Set weather to rain
 	developer:false
-	key:Return
+	key:r
 	controller_button:
 	controller_axis:
 </game_command>
 
 <game_command>
-	name:scoreboard
-	title:Scoreboard
-	description:Hold to display the scoreboard
+	name:snow
+	title:Snow
+	description:Set weather to snow
 	developer:false
-	key:Tab
+	key:s
+	controller_button:
+	controller_axis:
+</game_command>
+
+<game_command>
+	name:sleet
+	title:Sleet
+	description:Set weather to sleet
+	developer:false
+	key:x
+	controller_button:
+	controller_axis:
+</game_command>
+
+<game_command>
+	name:cloud
+	title:Cloud
+	description:Set weather to cloud
+	developer:false
+	key:c
+	controller_button:
+	controller_axis:
+</game_command>
+
+<game_command>
+	name:sand
+	title:Sand
+	description:Set weather to sand
+	developer:false
+	key:a
+	controller_button:
+	controller_axis:
+</game_command>
+
+<game_command>
+	name:none
+	title:None
+	description:Set weather to none
+	developer:false
+	key:n
+	controller_button:
+	controller_axis:
+</game_command>
+
+<game_command>
+	name:change_season
+	title:Change season
+	description:Change the season
+	developer:false
+	key:q
 	controller_button:
 	controller_axis:
 </game_command>

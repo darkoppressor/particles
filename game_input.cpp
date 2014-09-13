@@ -120,12 +120,24 @@ bool Game::handle_game_command(string command_name){
     ///END OF DEV COMMANDS
 
     if(!paused){
-        //Example command
-        /**if(command_name=="some_command"){
-            ///Command here
+        //Set weather
+        if(command_name=="rain" || command_name=="snow" || command_name=="sleet" || command_name=="cloud" || command_name=="sand" || command_name=="none"){
+            game.world.change_weather(command_name);
+            game.world.change_wind();
+            game.world.change_temperature();
 
             return true;
-        }*/
+        }
+
+        //Change season
+        else if(command_name=="change_season"){
+            game.world.day_counter=0;
+            game.world.day=0;
+            game.world.season=engine_interface.get_season(game.world.season)->next;
+            game.world.change_weather();
+            game.world.change_wind();
+            game.world.change_temperature();
+        }
 
         //Example multiplayer command input
         /**if(command_name=="some_command"){

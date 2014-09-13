@@ -102,12 +102,12 @@
 
 <color>
 	name:particle_oil_fire1
-	rgb:242,12,12
+	rgb:166,8,8
 </color>
 
 <color>
 	name:particle_oil_fire2
-	rgb:204,10,10
+	rgb:128,6,6
 </color>
 
 <color>
@@ -118,6 +118,16 @@
 <color>
 	name:particle_water2
 	rgb:10,107,204
+</color>
+
+<color>
+	name:particle_lava1
+	rgb:242,12,12
+</color>
+
+<color>
+	name:particle_lava2
+	rgb:128,6,6
 </color>
 
 <color>
@@ -151,12 +161,32 @@
 </color>
 
 <color>
+	name:particle_meteorite1
+	rgb:166,8,8
+</color>
+
+<color>
+	name:particle_meteorite2
+	rgb:128,6,6
+</color>
+
+<color>
 	name:particle_grass1
-	rgb:65,217,65
+	rgb:130,217,130
 </color>
 
 <color>
 	name:particle_grass2
+	rgb:107,179,107
+</color>
+
+<color>
+	name:particle_vine1
+	rgb:65,217,65
+</color>
+
+<color>
+	name:particle_vine2
 	rgb:54,179,54
 </color>
 
@@ -171,8 +201,53 @@
 </color>
 
 <color>
-	name:background
+	name:particle_fuse1
+	rgb:242,12,127
+</color>
+
+<color>
+	name:particle_fuse2
+	rgb:204,10,107
+</color>
+
+<color>
+	name:background_spring
+	rgb:242,12,242
+</color>
+
+<color>
+	name:background_spring_dark
+	rgb:204,10,204
+</color>
+
+<color>
+	name:background_summer
+	rgb:128,12,242
+</color>
+
+<color>
+	name:background_summer_dark
 	rgb:108,10,204
+</color>
+
+<color>
+	name:background_fall
+	rgb:242,128,12
+</color>
+
+<color>
+	name:background_fall_dark
+	rgb:204,107,10
+</color>
+
+<color>
+	name:background_winter
+	rgb:191,191,191
+</color>
+
+<color>
+	name:background_winter_dark
+	rgb:64,64,64
 </color>
 
 //** Engine Colors **//

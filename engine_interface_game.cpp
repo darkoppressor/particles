@@ -8,16 +8,26 @@ using namespace std;
 
 void Engine_Interface::load_data_game(){
     load_data("particle_type");
+    load_data("season");
+    load_data("weather");
 }
 
 void Engine_Interface::load_data_script_game(string script,File_IO_Load* load){
     if(script=="particle_type"){
         load_particle_types(load);
     }
+    else if(script=="season"){
+        load_seasons(load);
+    }
+    else if(script=="weather"){
+        load_weather(load);
+    }
 }
 
 void Engine_Interface::unload_data_game(){
     particle_types.clear();
+    seasons.clear();
+    weather.clear();
 }
 
 void Engine_Interface::load_particle_types(File_IO_Load* load){
@@ -31,13 +41,20 @@ void Engine_Interface::load_particle_types(File_IO_Load* load){
         string str_name="name:";
         string str_is_rendered="is_rendered:";
         string str_vertical_movement="vertical_movement:";
+        string str_grow_movement="grow_movement:";
         string str_vertical_chance="vertical_chance:";
         string str_horizontal_chance="horizontal_chance:";
+        string str_burn_chance="burn_chance:";
+        string str_grow_chance="grow_chance:";
         string str_flammable="flammable:";
+        string str_burnable="burnable:";
         string str_solid="solid:";
         string str_windblown="windblown:";
         string str_decay_type="decay_type:";
         string str_decay_chance="decay_chance:";
+        string str_melts_into="melts_into:";
+        string str_freezes_into="freezes_into:";
+        string str_evaporates_into="evaporates_into:";
         string str_mass="mass:";
         string str_move_tries="move_tries:";
         string str_allowed_moves="allowed_moves:";
@@ -73,6 +90,12 @@ void Engine_Interface::load_particle_types(File_IO_Load* load){
 
             particle_types[particle_types.size()-1].vertical_movement=line;
         }
+        //grow_movement
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_grow_movement)){
+            line.erase(0,str_grow_movement.length());
+
+            particle_types[particle_types.size()-1].grow_movement=line;
+        }
         //vertical_chance
         else if(!multi_line_comment && boost::algorithm::starts_with(line,str_vertical_chance)){
             line.erase(0,str_vertical_chance.length());
@@ -85,11 +108,29 @@ void Engine_Interface::load_particle_types(File_IO_Load* load){
 
             particle_types[particle_types.size()-1].horizontal_chance=string_stuff.string_to_unsigned_long(line);
         }
+        //burn_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_burn_chance)){
+            line.erase(0,str_burn_chance.length());
+
+            particle_types[particle_types.size()-1].burn_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //grow_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_grow_chance)){
+            line.erase(0,str_grow_chance.length());
+
+            particle_types[particle_types.size()-1].grow_chance=string_stuff.string_to_unsigned_long(line);
+        }
         //flammable
         else if(!multi_line_comment && boost::algorithm::starts_with(line,str_flammable)){
             line.erase(0,str_flammable.length());
 
             particle_types[particle_types.size()-1].flammable=string_stuff.string_to_bool(line);
+        }
+        //burnable
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_burnable)){
+            line.erase(0,str_burnable.length());
+
+            particle_types[particle_types.size()-1].burnable=string_stuff.string_to_bool(line);
         }
         //solid
         else if(!multi_line_comment && boost::algorithm::starts_with(line,str_solid)){
@@ -114,6 +155,24 @@ void Engine_Interface::load_particle_types(File_IO_Load* load){
             line.erase(0,str_decay_chance.length());
 
             particle_types[particle_types.size()-1].decay_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //melts_into
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_melts_into)){
+            line.erase(0,str_melts_into.length());
+
+            particle_types[particle_types.size()-1].melts_into=line;
+        }
+        //freezes_into
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_freezes_into)){
+            line.erase(0,str_freezes_into.length());
+
+            particle_types[particle_types.size()-1].freezes_into=line;
+        }
+        //evaporates_into
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_evaporates_into)){
+            line.erase(0,str_evaporates_into.length());
+
+            particle_types[particle_types.size()-1].evaporates_into=line;
         }
         //mass
         else if(!multi_line_comment && boost::algorithm::starts_with(line,str_mass)){
@@ -156,6 +215,190 @@ void Engine_Interface::load_particle_types(File_IO_Load* load){
     }
 }
 
+void Engine_Interface::load_seasons(File_IO_Load* load){
+    seasons.push_back(Season());
+
+    bool multi_line_comment=false;
+
+    while(!load->eof()){
+        string line="";
+
+        string str_name="name:";
+        string str_next="next:";
+        string str_weather_change_chance="weather_change_chance:";
+        string str_rain_chance="rain_chance:";
+        string str_snow_chance="snow_chance:";
+        string str_sleet_chance="sleet_chance:";
+        string str_cloud_chance="cloud_chance:";
+        string str_sand_chance="sand_chance:";
+        string str_weather_intensity="weather_intensity:";
+        string str_wind_strength="wind_strength:";
+        string str_temperature="temperature:";
+
+        load->getline(&line);
+        boost::algorithm::trim(line);
+
+        if(boost::algorithm::contains(line,"*/")){
+            multi_line_comment=false;
+        }
+        if(!multi_line_comment && boost::algorithm::starts_with(line,"/*")){
+            multi_line_comment=true;
+        }
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,"//")){
+        }
+
+        //name
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_name)){
+            line.erase(0,str_name.length());
+
+            seasons[seasons.size()-1].name=line;
+        }
+        //next
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_next)){
+            line.erase(0,str_next.length());
+
+            seasons[seasons.size()-1].next=line;
+        }
+        //weather_change_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_weather_change_chance)){
+            line.erase(0,str_weather_change_chance.length());
+
+            seasons[seasons.size()-1].weather_change_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //rain_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_rain_chance)){
+            line.erase(0,str_rain_chance.length());
+
+            seasons[seasons.size()-1].rain_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //snow_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_snow_chance)){
+            line.erase(0,str_snow_chance.length());
+
+            seasons[seasons.size()-1].snow_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //sleet_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_sleet_chance)){
+            line.erase(0,str_sleet_chance.length());
+
+            seasons[seasons.size()-1].sleet_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //cloud_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_cloud_chance)){
+            line.erase(0,str_cloud_chance.length());
+
+            seasons[seasons.size()-1].cloud_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //sand_chance
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_sand_chance)){
+            line.erase(0,str_sand_chance.length());
+
+            seasons[seasons.size()-1].sand_chance=string_stuff.string_to_unsigned_long(line);
+        }
+        //weather_intensity
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_weather_intensity)){
+            line.erase(0,str_weather_intensity.length());
+
+            vector<string> entries;
+            boost::algorithm::split(entries,line,boost::algorithm::is_any_of("-"));
+
+            if(entries.size()>=2){
+                seasons[seasons.size()-1].weather_intensity_min=string_stuff.string_to_unsigned_long(entries[0]);
+                seasons[seasons.size()-1].weather_intensity_max=string_stuff.string_to_unsigned_long(entries[1]);
+            }
+        }
+        //wind_strength
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_wind_strength)){
+            line.erase(0,str_wind_strength.length());
+
+            vector<string> entries;
+            boost::algorithm::split(entries,line,boost::algorithm::is_any_of("-"));
+
+            if(entries.size()>=2){
+                seasons[seasons.size()-1].wind_strength_min=string_stuff.string_to_unsigned_long(entries[0]);
+                seasons[seasons.size()-1].wind_strength_max=string_stuff.string_to_unsigned_long(entries[1]);
+            }
+        }
+        //temperature
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_temperature)){
+            line.erase(0,str_temperature.length());
+
+            vector<string> entries;
+            boost::algorithm::split(entries,line,boost::algorithm::is_any_of("-"));
+
+            if(entries.size()>=2){
+                seasons[seasons.size()-1].temperature_min=string_stuff.string_to_unsigned_long(entries[0]);
+                seasons[seasons.size()-1].temperature_max=string_stuff.string_to_unsigned_long(entries[1]);
+            }
+        }
+
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,"</season>")){
+            return;
+        }
+    }
+}
+
+void Engine_Interface::load_weather(File_IO_Load* load){
+    weather.push_back(Weather());
+
+    bool multi_line_comment=false;
+
+    while(!load->eof()){
+        string line="";
+
+        string str_name="name:";
+        string str_wind_strength="wind_strength:";
+        string str_temperature="temperature:";
+
+        load->getline(&line);
+        boost::algorithm::trim(line);
+
+        if(boost::algorithm::contains(line,"*/")){
+            multi_line_comment=false;
+        }
+        if(!multi_line_comment && boost::algorithm::starts_with(line,"/*")){
+            multi_line_comment=true;
+        }
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,"//")){
+        }
+
+        //name
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_name)){
+            line.erase(0,str_name.length());
+
+            weather[weather.size()-1].name=line;
+        }
+        //wind_strength
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_wind_strength)){
+            line.erase(0,str_wind_strength.length());
+
+            vector<string> entries;
+            boost::algorithm::split(entries,line,boost::algorithm::is_any_of("-"));
+
+            if(entries.size()>=2){
+                weather[weather.size()-1].wind_strength_min=string_stuff.string_to_unsigned_long(entries[0]);
+                weather[weather.size()-1].wind_strength_max=string_stuff.string_to_unsigned_long(entries[1]);
+            }
+        }
+        //temperature
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,str_temperature)){
+            line.erase(0,str_temperature.length());
+
+            vector<string> entries;
+            boost::algorithm::split(entries,line,boost::algorithm::is_any_of("-"));
+
+            if(entries.size()>=2){
+                weather[weather.size()-1].temperature_min=string_stuff.string_to_unsigned_long(entries[0]);
+                weather[weather.size()-1].temperature_max=string_stuff.string_to_unsigned_long(entries[1]);
+            }
+        }
+
+        else if(!multi_line_comment && boost::algorithm::starts_with(line,"</weather>")){
+            return;
+        }
+    }
+}
+
 Particle_Type* Engine_Interface::get_particle_type(string name){
     Particle_Type* ptr_object=0;
 
@@ -169,6 +412,42 @@ Particle_Type* Engine_Interface::get_particle_type(string name){
 
     if(ptr_object==0){
         message_log.add_error("Error accessing particle type '"+name+"'");
+    }
+
+    return ptr_object;
+}
+
+Season* Engine_Interface::get_season(string name){
+    Season* ptr_object=0;
+
+    for(int i=0;i<seasons.size();i++){
+        if(seasons[i].name==name){
+            ptr_object=&seasons[i];
+
+            break;
+        }
+    }
+
+    if(ptr_object==0){
+        message_log.add_error("Error accessing season '"+name+"'");
+    }
+
+    return ptr_object;
+}
+
+Weather* Engine_Interface::get_weather(string name){
+    Weather* ptr_object=0;
+
+    for(int i=0;i<weather.size();i++){
+        if(weather[i].name==name){
+            ptr_object=&weather[i];
+
+            break;
+        }
+    }
+
+    if(ptr_object==0){
+        message_log.add_error("Error accessing weather '"+name+"'");
     }
 
     return ptr_object;

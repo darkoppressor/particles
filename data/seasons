@@ -1,0 +1,59 @@
+<season>
+	name:spring
+	next:summer
+	weather_change_chance:20
+	rain_chance:60
+	snow_chance:0
+	sleet_chance:0
+	cloud_chance:10
+	sand_chance:0
+	none_chance:30
+	weather_intensity:10-15
+	wind_strength:10-20
+	temperature:15-25
+</season>
+
+<season>
+	name:summer
+	next:fall
+	weather_change_chance:10
+	rain_chance:20
+	snow_chance:0
+	sleet_chance:0
+	cloud_chance:30
+	sand_chance:5
+	none_chance:45
+	weather_intensity:5-10
+	wind_strength:10-15
+	temperature:20-40
+</season>
+
+<season>
+	name:fall
+	next:winter
+	weather_change_chance:10
+	rain_chance:40
+	snow_chance:0
+	sleet_chance:0
+	cloud_chance:20
+	sand_chance:0
+	none_chance:40
+	weather_intensity:10-15
+	wind_strength:15-25
+	temperature:5-15
+</season>
+
+<season>
+	name:winter
+	next:spring
+	weather_change_chance:20
+	rain_chance:5
+	snow_chance:40
+	sleet_chance:20
+	cloud_chance:10
+	sand_chance:0
+	none_chance:25
+	weather_intensity:10-15
+	wind_strength:10-15
+	temperature:0-0
+</season>

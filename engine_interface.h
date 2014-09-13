@@ -23,6 +23,8 @@
 #include "sprite.h"
 
 #include "particle_type.h"
+#include "season.h"
+#include "weather.h"
 
 #include <string>
 
@@ -89,6 +91,8 @@ public:
     std::vector<Window> windows;
 
     std::vector<Particle_Type> particle_types;
+    std::vector<Season> seasons;
+    std::vector<Weather> weather;
 
     Tooltip tooltip;
 
@@ -319,6 +323,10 @@ public:
 
     void load_particle_types(File_IO_Load* load);
     Particle_Type* get_particle_type(std::string name);
+    void load_seasons(File_IO_Load* load);
+    Season* get_season(std::string name);
+    void load_weather(File_IO_Load* load);
+    Weather* get_weather(std::string name);
 
     Color_Theme* current_color_theme();
     bool animation_exists(std::string animation_name);
