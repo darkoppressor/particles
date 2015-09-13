@@ -1,5 +1,6 @@
 # particles
 Play with all sorts of particles!
+http://cheeseandbacon.org/
 
 This is a particle simulator that allows the creation of a number of different kinds of particles. It has some interesting features like weather (using cloud particles that decay into rain, snow, etc.)
 
